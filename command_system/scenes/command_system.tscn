@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ya1jjd6ft23m"]
+
+[ext_resource type="Script" path="res://scripts/command_system.gd" id="1_ht8q3"]
+[ext_resource type="Texture2D" uid="uid://dpvsant24dlip" path="res://icon.svg" id="2_fyvtw"]
+
+[node name="command_system" type="Node2D"]
+script = ExtResource("1_ht8q3")
+
+[node name="command_line" type="LineEdit" parent="."]
+offset_right = 1366.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+placeholder_text = "> Input command"
+
+[node name="command_label" type="RichTextLabel" parent="."]
+offset_top = 48.0
+offset_right = 1366.0
+offset_bottom = 408.0
+theme_override_font_sizes/normal_font_size = 24
+
+[node name="robot1" type="CharacterBody2D" parent="."]
+visible = false
+position = Vector2(189, 434)
+
+[node name="Sprite2D" type="Sprite2D" parent="robot1"]
+texture = ExtResource("2_fyvtw")
+
+[connection signal="gui_input" from="command_line" to="." method="_on_command_line_gui_input"]
+[connection signal="text_changed" from="command_line" to="." method="_on_command_line_edited"]
+[connection signal="text_submitted" from="command_line" to="." method="_on_command_line_submitted"]
